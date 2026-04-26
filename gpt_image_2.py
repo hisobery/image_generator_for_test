@@ -8,6 +8,11 @@ from datetime import datetime
 #此处为API地址和API Key
 url = "https://XXXXX/v1/images/generations"#BaseURL
 api_key = "sk-XXXXX"#API Key
+#此处为提示词和画面比例
+prompt = r'''#提示词
+一个金属苹果雕塑
+''' 
+aspect_ratio="1:1" #画面比例
 
 #读取图片(这个列表里放需要转换的图片路径（建议使用绝对路径），如果不需要转换图片，可以保持为空列表)
 image_path = []
@@ -21,10 +26,8 @@ for path in image_path:
 #准备生成图片（需修改提示词和画面比例）
 payload = json.dumps({
    "model": "gpt-image-2",
-   "prompt":r"""#提示词
-    一个金属苹果雕塑
-    """,
-   "aspect_ratio": "1:1",#画面比例
+   "prompt":prompt,
+   "aspect_ratio": aspect_ratio,
    "quality": "high",
    "image":image_result 
 })
