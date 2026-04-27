@@ -14,14 +14,8 @@ prompt = r'''#提示词
 ''' 
 aspect_ratio="1:1" #画面比例
 
-#读取图片(这个列表里放需要转换的图片路径（建议使用绝对路径），如果不需要转换图片，可以保持为空列表)
-image_path = []
-#转换图片为base64字符串
-image_result = []
-for path in image_path:
-    with open(path, "rb") as f:
-        img_b64 = base64.b64encode(f.read()).decode("utf-8")
-    image_result.append(img_b64)
+#读取图片(这个列表里放需要转换的图片链接，如果不需要转换图片，可以保持为空列表)
+image = []
 
 #准备生成图片（需修改提示词和画面比例）
 payload = json.dumps({
@@ -29,7 +23,7 @@ payload = json.dumps({
    "prompt":prompt,
    "aspect_ratio": aspect_ratio,
    "quality": "high",
-   "image":image_result 
+   "image":image
 })
 headers = {
    'Authorization': f'Bearer {api_key}',
